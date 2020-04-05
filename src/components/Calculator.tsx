@@ -10,6 +10,14 @@ export class Calculator extends React.Component {
 
     private operation: string;
 
+    private result: number;
+
+    constructor(props: {}) {
+        super(props);
+
+        this.result = 0;
+    }
+
     private storeNumber(input: number): void {
         if (this.operation === undefined) {
             this.first = input;
@@ -23,16 +31,14 @@ export class Calculator extends React.Component {
     }
 
     private doCalculation(): void {
-        let result: number;
-
         if (this.operation === "+") {
-            result = this.first + this.second;
+            this.result = this.first + this.second;
         } else if (this.operation === "-") {
-            result = this.first - this.second;
+            this.result = this.first - this.second;
         } else if (this.operation === "*") {
-            result = this.first * this.second;
+            this.result = this.first * this.second;
         } else if (this.operation === "/") {
-            result = this.first / this.second;
+            this.result = this.first / this.second;
         }
 
         this.operation = undefined;
@@ -41,6 +47,11 @@ export class Calculator extends React.Component {
     render() {
         return (
             <Container>
+                <Row>
+                    <Col>
+                        {this.result}
+                    </Col>
+                </Row>
                 <Row>
                     <Col>
                         <ButtonCalculator label="7" onClick={() => this.storeNumber(7)} />
